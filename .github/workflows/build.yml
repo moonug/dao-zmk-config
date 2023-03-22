@@ -29,6 +29,11 @@ jobs:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
     steps:
+      - if: ${{ env.ACT }}
+        name: Hack container for local development
+        run: |
+            apt-get update
+            apt-get install -y nodejs
       - name: Prepare variables
         id: variables
         run: |
@@ -46,7 +51,8 @@ jobs:
           echo ::set-output name=display-name::${DISPLAY_NAME}
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Cache west modules
+      - if: ${{ ! env.ACT }}
+        name: Cache west modules
         uses: actions/cache@v2
         env:
           cache-name: cache-zephyr-modules
