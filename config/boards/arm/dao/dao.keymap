@@ -16,12 +16,12 @@
 #define ADJUST 3
 
 &lt {
-    quick_tap_ms = <200>;
+    quick_tap_ms = <125>;
     flavor = "balanced";
 };
 
 &mt {
-    quick_tap_ms = <200>;
+    quick_tap_ms = <125>;
     flavor = "balanced";
 };
 
